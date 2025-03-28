@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Aniversário, Lauren!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body { margin: 0; font-family: Arial, sans-serif; }
+        .tela-inicial { background: black; height: 100vh; display: flex; align-items: center; justify-content: center; }
+        .tela-inicial button { font-size: 20px; padding: 15px 30px; border: none; cursor: pointer; background: white; border-radius: 10px; }
+        
+        /* 🔥 Definindo a altura total da tela para ocupar todo o espaço disponível */
+        .conteudo { 
+            display: none;
+            text-align: center;
+            padding: 20px;
+            background: black;
+            color: white;
+            height: 100vh; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+        }
+
+        .galeria { 
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            margin-top: 20px;
+            gap: 20px;
+        }
+
+        .galeria img { 
+            width: 80%; 
+            max-height: 600px; 
+            border-radius: 10px; 
+            display: none;
+            object-fit: cover; 
+        }
+
+        .galeria img.ativa { 
+            display: block; 
+        }
+
+        .botoes button { 
+            background: none; 
+            border: none; 
+            color: white; 
+            font-size: 30px; 
+            cursor: pointer; 
+            margin: 0 10px; 
+        }
+    </style>
+</head>
+<body>
+
+    <div class="tela-inicial">
+        <button onclick="iniciarSite()">Descubra</button>
+    </div>
+
+    <div class="conteudo">
+        <h1>Feliz Aniversário, Lauren! 🎉</h1>
+        <p>Lauren, tudo de bom para você! Continue sendo essa pessoa maravilhosa que é! Você foi uma das melhores pessoas que me aproximei nos últimos anos. Espero que tenha um sucesso imenso em tudo que almeja. ❤️</p>
+        
+        <div class="galeria">
+            <button onclick="mudarImagem(-1)"><i class="fas fa-chevron-left"></i></button>
+            <img src="img/foto1.jpg" class="ativa">
+            <img src="img/foto2.jpg">
+            <img src="img/foto3.jpg">
+            <button onclick="mudarImagem(1)"><i class="fas fa-chevron-right"></i></button>
+        </div>
+
+        <audio id="musica" src="music/sereia.mp3" loop autoplay></audio>
+    </div>
+
+    <script>
+        function iniciarSite() {
+            document.querySelector('.tela-inicial').style.display = 'none';
+            document.querySelector('.conteudo').style.display = 'flex';
+            document.getElementById('musica').play();
+        }
+        
+        let indiceAtual = 0;
+        function mudarImagem(direcao) {
+            let imagens = document.querySelectorAll('.galeria img');
+            imagens[indiceAtual].classList.remove('ativa');
+            indiceAtual = (indiceAtual + direcao + imagens.length) % imagens.length;
+            imagens[indiceAtual].classList.add('ativa');
+        }
+    </script>
+
+</body>
+</html>
+
